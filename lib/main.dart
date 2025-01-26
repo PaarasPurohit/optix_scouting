@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:optix_scouting/start.dart';
+import 'package:optix_scouting/match.dart';
+import 'package:optix_scouting/history.dart';
 
 void main() {
   runApp(MyApp());
@@ -64,30 +66,6 @@ class _MainPageState extends State<MainPage> {
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
-      ),
-    );
-  }
-}
-
-class MatchPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Match Page',
-        style: TextStyle(fontSize: 24),
-      ),
-    );
-  }
-}
-
-class HistoryPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'History Page',
-        style: TextStyle(fontSize: 24),
       ),
     );
   }

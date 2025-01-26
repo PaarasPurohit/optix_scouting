@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dropdown_search/flutter_dropdown_search.dart';
+import 'package:optix_scouting/data.dart';
+import 'package:optix_scouting/match.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -102,16 +104,10 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            FlutterDropdownSearch<String>(
+            FlutterDropdownSearch(
               textController: _controller,
-              label: "Select Event",
-              hint: "Type to search...",
-              onChanged: (String? value) {
-                setState(() {
-                  selectedEvent = value;
-                });
-              },
-              showSearchBox: true, // Enables the typing feature
+              items: eventNames,
+              dropdownHeight: 300,
             ),
             TextFormField(
               decoration: InputDecoration(labelText: 'Enter Match'),
@@ -163,7 +159,11 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Start scouting
+                DataStorage.storeHomeData(_selectedMatch, _teamNumber, _selectedAlliance);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MatchPage()),
+                );
                 print('Match: $_selectedMatch, Team: $_teamNumber, Alliance: $_selectedAlliance');
               },
               child: Text('Start Scout'),
