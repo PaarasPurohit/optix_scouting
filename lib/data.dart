@@ -1,75 +1,51 @@
-import 'dart:convert';
-
 class DataStorage {
-  static String competition = '';
   static int selectedMatch = 1;
   static String teamNumber = '';
-  static String selectedAlliance = '';
-  static int l1Score = 0;
-  static int l2Score = 0;
-  static int l3Score = 0;
-  static int l4Score = 0;
-  static int netShots = 0;
-  static int processorShots = 0;
+  static String selectedAlliance = 'Red';
+
+  static int l1ScoreAuto = 0;
+  static int l2ScoreAuto = 0;
+  static int l3ScoreAuto = 0;
+  static int l4ScoreAuto = 0;
+  static int netShotsAuto = 0;
+  static int processorShotsAuto = 0;
+
+  static int l1ScoreTeleop = 0;
+  static int l2ScoreTeleop = 0;
+  static int l3ScoreTeleop = 0;
+  static int l4ScoreTeleop = 0;
+  static int netShotsTeleop = 0;
+  static int processorShotsTeleop = 0;
+
   static bool shallowSelected = false;
   static bool parkSelected = false;
   static bool deepSelected = false;
   static bool defense = false;
   static bool robotBroke = false;
+
   static String comments = '';
 
-  static Map<String, dynamic> scoutedData = {};
-
-  static void storeData({
-    required String competition,
-    required int selectedMath,
-    required String teamNumber,
-    required String selectedAlliance,
-    required int l1Score,
-    required int l2Score,
-    required int l3Score,
-    required int l4Score,
-    required int netShots,
-    required int processorShots,
-    required bool shallowSelected,
-    required bool parkSelected,
-    required bool deepSelected,
-    required bool defense,
-    required bool robotBroke,
-    required String comments
-  }) {
-    scoutedData = {
-      'competition': competition,
+  static Map<String, dynamic> toJson() {
+    return {
       'selectedMatch': selectedMatch,
       'teamNumber': teamNumber,
       'selectedAlliance': selectedAlliance,
-      'auto' : {
-        'l1Score': l1Score,
-        'l2Score': l2Score,
-        'l3Score': l3Score,
-        'l4Score': l4Score,
-        'netShots': netShots,
-        'processorShots': processorShots,
+      'auto': {
+        'l1Score': l1ScoreAuto,
+        'l2Score': l2ScoreAuto,
+        'l3Score': l3ScoreAuto,
+        'l4Score': l4ScoreAuto,
+        'netShots': netShotsAuto,
+        'processorShots': processorShotsAuto,
       },
       'teleop': {
-        'l1Score': l1Score,
-        'l2Score': l2Score,
-        'l3Score': l3Score,
-        'l4Score': l4Score,
-        'netShots': netShots,
-        'processorShots': processorShots,
+        'l1Score': l1ScoreTeleop,
+        'l2Score': l2ScoreTeleop,
+        'l3Score': l3ScoreTeleop,
+        'l4Score': l4ScoreTeleop,
+        'netShots': netShotsTeleop,
+        'processorShots': processorShotsTeleop,
       },
-      'endgame': {
-        'shallowSelected': shallowSelected,
-        'parkSelected': parkSelected,
-        'deepSelected': deepSelected,
-      },
-      'l1Score': l1Score,
-      'l2Score': l2Score,
-      'l3Score': l3Score,
-      'l4Score': l4Score,
-      'netShots': netShots,
-      'processorShots': processorShots,
       'shallowSelected': shallowSelected,
       'parkSelected': parkSelected,
       'deepSelected': deepSelected,
@@ -78,38 +54,4 @@ class DataStorage {
       'comments': comments,
     };
   }
-
-  static String toJson() {
-    return jsonEncode(scoutedData);
-  }
-
-  static void storeHomeData(int match, String team, String alliance) {
-    selectedMatch = match;
-    teamNumber = team;
-    selectedAlliance = alliance;
-  }
-
-  static void storeScoutedData(int l1, int l2, int l3, int l4, int net, int processor, bool shallow, bool park, bool deep, bool def, bool broke) {
-    l1Score = l1;
-    l2Score = l2;
-    l3Score = l3;
-    l4Score = l4;
-    netShots = net;
-    processorShots = processor;
-    shallowSelected = shallow;
-    parkSelected = park;
-    deepSelected = deep;
-    defense = def;
-    robotBroke = broke;
-  }
-
-  static void storeComments(String comments) {
-    scoutedData['comments'] = comments;
-  }
-
-  static String exportData() {
-    return jsonEncode(scoutedData);
-  }
-
-  static String get data => 'Match: $selectedMatch, Team: $teamNumber, Alliance: $selectedAlliance';
 }

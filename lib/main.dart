@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optix_scouting/start.dart';
 import 'package:optix_scouting/match.dart';
-import 'package:optix_scouting/history.dart';
 
 void main() {
   runApp(MyApp());
@@ -35,7 +34,6 @@ class _MainPageState extends State<MainPage> {
   static List<Widget> _pages = <Widget>[
     HomePage(),
     MatchPage(),
-    HistoryPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -57,10 +55,6 @@ class _MainPageState extends State<MainPage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.sports_esports),
             label: 'Match',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            label: 'History',
           ),
         ],
         currentIndex: _selectedIndex,

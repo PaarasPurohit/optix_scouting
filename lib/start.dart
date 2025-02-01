@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dropdown_search/flutter_dropdown_search.dart';
-import 'package:optix_scouting/data.dart';
 import 'package:optix_scouting/match.dart';
+import 'package:optix_scouting/data.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,10 +18,10 @@ class _HomePageState extends State<HomePage> {
   String _teamNumber = '';
   String _selectedAlliance = 'Red';
   String _teamName = '';
+  String? selectedEvent;
 
   Map<String, dynamic> events = {};
   List<String> eventNames = [];
-  String? selectedEvent;
 
   int _currentPage = 0;
   Timer? _timer;
@@ -150,12 +150,13 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                DataStorage.storeHomeData(_selectedMatch, _teamNumber, _selectedAlliance);
+                  DataStorage.teamNumber = _teamNumber;
+                  DataStorage.selectedAlliance = _selectedAlliance;
+                  DataStorage.selectedMatch = _selectedMatch;
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => MatchPage()),
                 );
-                print('Match: $_selectedMatch, Team: $_teamNumber, Alliance: $_selectedAlliance');
               },
               child: Text('Start Scout'),
             ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:optix_scouting/data.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 void showSaveDialog(BuildContext context) {
   showDialog(
@@ -26,19 +26,28 @@ void showSaveDialog(BuildContext context) {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                DataStorage.storeComments(comments); // Store the comments in DataStorage
-                String jsonData = DataStorage.exportData(); // Get the JSON data
-
+                DataStorage.comments = comments;
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
                       title: Text('QR Code'),
-                      content: QrImageView(
-                        data: jsonData,
-                        version: QrVersions.auto,
-                        size: 320,
-                        gapless: false,
+                      content: SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SizedBox(
+                              width: 320,
+                              height: 320,
+                              child: QrImageView(
+                                data: DataStorage.toJson().toString(),
+                                version: QrVersions.auto,
+                                size: 320,
+                                gapless: false,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       actions: [
                         TextButton(
