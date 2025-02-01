@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:optix_scouting/data.dart';
+import 'package:optix_scouting/save.dart';
 
 class MatchPage extends StatefulWidget {
   @override
@@ -83,6 +85,13 @@ class _MatchPageState extends State<MatchPage> {
                 robotBroke = value!;
               });
             }),
+            ElevatedButton(
+              onPressed: () {
+                DataStorage.storeScoutedData(l1Score, l2Score, l3Score, l4Score, netShots, processorShots, shallowSelected, parkSelected, deepSelected, defense, robotBroke);
+                showSaveDialog(context);
+              },
+              child: Text('Save'),
+            ),
           ],
         ),
       ),

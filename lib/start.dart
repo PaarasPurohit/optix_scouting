@@ -88,8 +88,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('Scouting'),
       ),
-      body: 
-      Padding(
+      body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
@@ -124,16 +123,8 @@ class _HomePageState extends State<HomePage> {
             ),
             TextFormField(
               decoration: InputDecoration(labelText: 'Team Number'),
-              keyboardType: TextInputType.number,
               onChanged: (value) {
-                setState(() {
-                  if (value.isEmpty) {
-                    _teamName = '';
-                  } else {
-                    _teamNumber = value;
-                  }
-                });
-                _updateTeamName(value);
+                _teamNumber = value;
               },
             ),
             SizedBox(height: 8.0), // Add some spacing
