@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
 
   void _updateTeamName(String teamNumber) {
     setState(() {
-      _teamName = teamData[teamNumber];
+      _teamName = teamData[teamNumber] ?? 'Unknown Team';
     });
   }
 
@@ -125,6 +125,7 @@ class _HomePageState extends State<HomePage> {
               decoration: InputDecoration(labelText: 'Team Number'),
               onChanged: (value) {
                 _teamNumber = value;
+                _updateTeamName(value);
               },
             ),
             SizedBox(height: 8.0), // Add some spacing
@@ -151,6 +152,7 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
               onPressed: () {
                   DataStorage.teamNumber = _teamNumber;
+                  DataStorage.teamName = _teamName;
                   DataStorage.selectedAlliance = _selectedAlliance;
                   DataStorage.selectedMatch = _selectedMatch;
                 Navigator.push(

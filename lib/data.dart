@@ -1,6 +1,7 @@
 class DataStorage {
   static int selectedMatch = 1;
   static String teamNumber = '';
+  static String teamName = '';
   static String selectedAlliance = 'Red';
 
   static int l1ScoreAuto = 0;
@@ -29,6 +30,7 @@ class DataStorage {
     return {
       'selectedMatch': selectedMatch,
       'teamNumber': teamNumber,
+      'teamName': teamName,
       'selectedAlliance': selectedAlliance,
       'auto': {
         'l1Score': l1ScoreAuto,
