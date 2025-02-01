@@ -15,7 +15,7 @@ class _MatchPageState extends State<MatchPage> {
   bool defense = false, robotBroke = false;
 
   int autoTime = 15;
-  int teleopTime = 5;
+  int teleopTime = 135;
   bool isAuto = true;
   bool isRunning = false;
   late Timer _timer;
@@ -27,7 +27,7 @@ class _MatchPageState extends State<MatchPage> {
       isRunning = true;
       isAuto = true;
       autoTime = 15;
-      teleopTime = 5;
+      teleopTime = 135;
     });
 
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
