@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:optix_scouting/start.dart';
 import 'package:optix_scouting/match.dart';
+import 'package:optix_scouting/credits.dart';
 
 void main() {
   runApp(MyApp());
 }
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -34,6 +37,7 @@ class _MainPageState extends State<MainPage> {
   static List<Widget> _pages = <Widget>[
     HomePage(),
     MatchPage(),
+    CreditsPage()
   ];
 
   void _onItemTapped(int index) {
@@ -56,6 +60,10 @@ class _MainPageState extends State<MainPage> {
             icon: Icon(Icons.sports_esports),
             label: 'Match',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.description),
+            label: 'Credits',
+          )
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
