@@ -13,7 +13,8 @@ void showSaveDialog(BuildContext context) {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            TextFormField(
+            if (DataStorage.defense) 
+              TextFormField(
               maxLines: 5,
               decoration: InputDecoration(
                 labelText: 'Additional Comments',
@@ -22,7 +23,7 @@ void showSaveDialog(BuildContext context) {
               onChanged: (value) {
                 comments = value;
               },
-            ),
+              ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
@@ -42,7 +43,7 @@ void showSaveDialog(BuildContext context) {
                               child: QrImageView(
                                 data: DataStorage.toJson().toString(),
                                 version: QrVersions.auto,
-                                size: 320,
+                                size: 100,
                                 gapless: false,
                               ),
                             ),

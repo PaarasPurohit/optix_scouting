@@ -21,6 +21,7 @@ class DataStorage {
   static bool shallowSelected = false;
   static bool parkSelected = false;
   static bool deepSelected = false;
+  
   static bool defense = false;
   static bool robotBroke = false;
 
@@ -28,32 +29,15 @@ class DataStorage {
 
   static Map<String, dynamic> toJson() {
     return {
-      'selectedMatch': selectedMatch,
-      'teamNumber': teamNumber,
-      'teamName': teamName,
-      'selectedAlliance': selectedAlliance,
-      'auto': {
-        'l1Score': l1ScoreAuto,
-        'l2Score': l2ScoreAuto,
-        'l3Score': l3ScoreAuto,
-        'l4Score': l4ScoreAuto,
-        'netShots': netShotsAuto,
-        'processorShots': processorShotsAuto,
-      },
-      'teleop': {
-        'l1Score': l1ScoreTeleop,
-        'l2Score': l2ScoreTeleop,
-        'l3Score': l3ScoreTeleop,
-        'l4Score': l4ScoreTeleop,
-        'netShots': netShotsTeleop,
-        'processorShots': processorShotsTeleop,
-      },
-      'shallowSelected': shallowSelected,
-      'parkSelected': parkSelected,
-      'deepSelected': deepSelected,
-      'defense': defense,
-      'robotBroke': robotBroke,
-      'comments': comments,
+      'm': selectedMatch,
+      'tnu': teamNumber,
+      'tna': teamName,
+      'ta': selectedAlliance == 'Red' ? 'R' : 'B', // Ensures only 'R' or 'B' is stored
+      'a': [l1ScoreAuto, l2ScoreAuto, l3ScoreAuto, l4ScoreAuto, netShotsAuto, processorShotsAuto],
+      't': [l1ScoreTeleop, l2ScoreTeleop, l3ScoreTeleop, l4ScoreTeleop, netShotsTeleop, processorShotsTeleop],
+      'p': [shallowSelected ? 1 : 0, parkSelected ? 1 : 0, deepSelected ? 1 : 0],
+      'd': [defense ? 1 : 0, robotBroke ? 1 : 0],
+      'c': comments.isNotEmpty ? comments : '',
     };
   }
 }
